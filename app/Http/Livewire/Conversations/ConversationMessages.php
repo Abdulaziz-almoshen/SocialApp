@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class ConversationMessages extends Component
 {
-
+    /** @var array messages */
     public $messages;
 
     public function mount(Collection $messages)
@@ -20,15 +20,16 @@ class ConversationMessages extends Component
     {
         return view('livewire.conversations.conversation-messages');
     }
+
     protected function getListeners()
     {
         return [
-        'message.created' => 'prependMessage',
+            'message.created' => 'prependMessage',
         ];
     }
 
     public function prependMessage($id)
     {
-        $this->messages->prepend(Message::find($id));
+        $this->messages->prepend(Message::findOrFail($id));
     }
 }

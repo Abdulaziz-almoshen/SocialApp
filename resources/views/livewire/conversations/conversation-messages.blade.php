@@ -1,6 +1,5 @@
 <div>
     <div class="py-2 px-3 overflow-scroll" style="height: 800px">
-{{--        date--}}
         <div class="flex justify-center mb-2">
             <div class="rounded py-2 px-4" style="background-color: #DDECF2">
                 <p class="text-sm uppercase">
@@ -15,7 +14,6 @@
                 </p>
             </div>
         </div>
-        {{--            Messages other poeple--}}
         <div>
             @foreach ($messages as $message)
                 @if($message->isOwn())

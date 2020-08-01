@@ -14,12 +14,12 @@
             <!-- Chat content -->
                 <!-- Chat messages -->
             <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
-                <livewire:conversations.conversation-users :users="$conversation->users" />
+                <livewire:conversations.conversation-users conversation="$conversation" :users="$conversation->users" />
 
             </div>
             <!-- Messages -->
             <div class="flex-1 overflow-scroll" style="background-color: #DAD3CC">
-                <livewire:conversations.conversation-messages :messages="$conversation->messages" />
+                <livewire:conversations.conversation-messages :conversation="$conversation"  :messages="$conversation->messages" />
                 <!-- Input -->
             </div>
             <livewire:conversations.conversation-reply :conversation="$conversation" />
