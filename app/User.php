@@ -109,7 +109,12 @@ class User extends Authenticatable
 
     public function present()
     {
+
         return new UserPresenter($this);
+    }
+    public function hasRead(Conversation $conversation)
+    {
+        return $this->conversations->find($conversation->id)->pivot->read_at;
     }
 
 

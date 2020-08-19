@@ -39,3 +39,10 @@ Route::post('/media', 'Api\Media\MediaController@store');
 
 // notifications
 Route::get('/notificaations', 'Api\Notifications\NotificationsController@index');
+
+
+//conversation
+Route::get('/conversation/{uuid}', 'Api\Conversations\ConversationController@show');
+Route::post('/conversation', 'Conversation\ConversationsController@store');
+
+//

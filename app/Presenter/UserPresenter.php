@@ -17,7 +17,7 @@ class UserPresenter
 
     public function name()
     {
-        if($this->model->nickname === auth()->user()->nickname){
+        if ($this->model->id === auth()->id()) {
             return 'You';
         }
         return $this->model->nickname;

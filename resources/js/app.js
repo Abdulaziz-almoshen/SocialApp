@@ -11,6 +11,7 @@ import VueLazyLoad from 'vue-lazyload'
 import LightBox from 'vue-image-lightbox'
 import VModal from 'vue-js-modal'
 import vuetify from './vuetify'
+import VueCompositionAPI from '@vue/composition-api'
 
 // stores
 import timeline from './store/timeline';
@@ -24,6 +25,8 @@ import conversation from "./store/conversation";
 Vue.use(Vuex);
 Vue.use(VueObserveVisibility);
 Vue.use(VueLazyLoad)
+
+Vue.use(VueCompositionAPI)
 
 require('./bootstrap');
 
