@@ -13,7 +13,8 @@
             <!-- Chat content -->
                 <!-- Chat messages -->
             <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
-                <livewire:conversations.conversation-users conversation="$conversation" :users="$conversation" />
+{{--                <livewire:conversations.conversation-users conversation="$conversation" :users="$conversation" />--}}
+                <app-users-panel :users="{{$conversation}}"></app-users-panel>
 
             </div>
             <!-- Messages -->

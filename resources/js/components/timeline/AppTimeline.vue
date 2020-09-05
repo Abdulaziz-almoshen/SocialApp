@@ -68,8 +68,6 @@
 
             window.Echo.private(`timeline.${this.$user.id}`)
                 .listen('.tweet.created', (e) => {
-                    console.log('listeing ')
-
                     this.PUSH_TWEET([e])
                 });
 

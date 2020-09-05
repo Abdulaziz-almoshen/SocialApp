@@ -44,7 +44,7 @@ class TweetsController extends Controller
         foreach( $request->media as $id) {
             $tweet->media()->save(TweetMedia::find($id));
         };
-        broadcast(new TweetWasCreated($tweet ));
+        broadcast(new TweetWasCreated($tweet));
         $tweet->mentions->users()->each->notify(new TweetMention($tweet,$request->user()));
 
 

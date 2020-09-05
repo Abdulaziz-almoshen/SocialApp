@@ -13,7 +13,7 @@
                     @if(!auth()->user()->hasRead($conversation))
                         <span class="bg-blue-400 mr-2 rounded-full" style="width: 10px; height: 10px;"></span>
                     @endif
-                    <span>{{ $conversation->messages->first()->body }}</span>
+                    <span>{{ $conversation->messages->first()->body}}</span>
                 </p>
             </a>
         @endforeach

@@ -51,17 +51,31 @@ export default {
             model: null,
         };
     },
+    methods:{
+        filterMessages(id){
+            this.model = this.model.filter((message) => {
+                return message.id !==  id
+            })
+        }
+    },
 
     created() {
         this.model = this.messages;
+
     },
 
+
     mounted() {
-        Bus.$on('message.added', data => {
-            this.model.unshift(data)
-            console.log(data)
+        Bus.$on('message.added', message => {
+            this.model.unshift(message)
             this.$refs.chat.scrollTop = 0;
+        })
+        .$on('message.removed', message => {
+            this.filterMessages(message.id)
         });
+
+
+
     },
 }
 </script>

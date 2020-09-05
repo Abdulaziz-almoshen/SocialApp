@@ -40,24 +40,26 @@ export default {
     },
     data(){
         return {
-            body:null
+            body:null,
+            backedUpMessage:null
         }
     },
-    methods:{
-        handleMessageInput(e){
+    methods: {
+        handleMessageInput(e) {
+            this.backedUpMessage = this.body
 
             if (!e.shiftKey == true && e.keyCode === 13) {
                 e.preventDefault()
                 this.send()
             }
         },
-        tempMessage(){
+        tempMessage() {
             let tempId = Date.now();
 
             return {
-                id : tempId,
+                id: tempId,
                 body: this.body,
-                created_at: moment().utc(0).format('YYYY-MM-DD HH:mm:ss'),
+                published: moment().utc(0).fromNow(),
                 selfOwned: true,
                 user: {
                     name: this.nickname
@@ -65,25 +67,27 @@ export default {
             }
 
 
-
         },
-        send(){
+        send() {
 
-            if (!this.body || this.body.trim() === '' ){
+            if (!this.body || this.body.trim() === '') {
                 return
             }
-           let tempBuitMessage = this.tempMessage()
+            let tempBuitMessage = this.tempMessage()
             Bus.$emit('message.added', tempBuitMessage);
-            axios.
-            post('/api/conversation',{
-                body : this.body.trim(),
+            axios.post('/api/conversation', {
+                body: this.body.trim(),
                 uuid: this.uuid
-            }).
-            catch(error =>
-                console.log(error))
-            this.body = ''
+            }).catch((error) => {
+                this.body = this.backedUpMessage
+                Bus.$emit('message.removed', tempBuitMessage);
 
+            })
+            this.body = null
         }
+    },
+    mounted() {
+
     }
 }
 </script>

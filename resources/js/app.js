@@ -91,7 +91,6 @@ window.Echo.channel('tweets').listen('.tweet.likes', (e) => {
     store.commit('timeline/SET_LIKES',e)
     store.commit('notifications/SET_LIKES',e)
     store.commit('conversation/SET_LIKES',e)
-
     store.dispatch('likes/asyncLike', e.id)
 });
 
@@ -100,29 +99,19 @@ window.Echo.channel('tweets').listen('.tweet.retweet', (e) => {
     store.dispatch('retweets/asyncRetweet', e.id)
     store.commit('notifications/SET_RETWEET',e)
     store.commit('conversation/SET_RETWEET',e)
-
 });
 window.Echo.channel('tweets').listen('.tweet.deleted', (e) => {
     store.commit('timeline/POP_TWEET',e.id)
 
 });
 window.Echo.channel('tweets').listen('.reply.created', (e) => {
-    console.log('im here')
-    console.log(e)
     store.commit('timeline/SET_REPLY',e)
     store.commit('notifications/SET_REPLY',e)
     store.commit('conversation/SET_REPLY',e)
-
     store.dispatch('replies/asyncReplies', e.id)
 
 });
-// window.Echo.channel('tweets').listen('.reply.created', (e) => {
-//     console.log('im here')
-//     console.log(e)
-//     store.commit('timeline/SET_REPLY',e)
-//     store.dispatch('replies/asyncReplies', e.id)
-//
-// });
+
 
 
 

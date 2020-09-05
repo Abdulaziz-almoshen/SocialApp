@@ -10,12 +10,12 @@
 <!--                    {{ $message->user->present()->name()  }}-->
                 </p>
                 <p class="text-sm mt-1">
-                    hello
-<!--                    {{// $message->body}}-->
+
+                    {{ message.body}}
                 </p>
                 <p class="text-right text-xs text-grey-dark mt-1">
-                    2020
-<!--                    {{ \Carbon\Carbon::parse($message->created_at)->diffForHumans() }}-->
+
+                    {{message.published }}
                 </p>
             </div>
         </div>

@@ -38,4 +38,7 @@ class Message extends Model
         return $this->user_id === auth()->id();
     }
 
+
+
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Conversation;
 
 use App\Conversation;
+use App\Events\Chat\ChatCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\chat\StoreMessageRequest;
 use App\Http\Resources\ConversationResource;
@@ -10,6 +11,7 @@ use App\Http\Resources\Conversations;
 use App\Http\Resources\ConversationsCollection;
 use App\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConversationsController extends Controller
 {
@@ -44,11 +46,16 @@ class ConversationsController extends Controller
 
     public function store(StoreMessageRequest $request)
     {
+        $user = Auth::user();
+
         $conversation = Conversation::where('uuid',$request->uuid)->firstOrFail();
         $message = $conversation->messages()->create([
             'user_id' => user()->id,
             'body' => $request->body,
         ]);
+        broadcast(new ChatCreated($user, $message, $conversation))->toOthers();
+        return response()->json($message,200);
+
     }
 
 }

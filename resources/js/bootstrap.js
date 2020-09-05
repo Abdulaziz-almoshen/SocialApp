@@ -39,7 +39,7 @@ window.Echo = new Echo({
     key: '3685fd3c1ba14dd91e5a',
     disableStats: true,
     cluster:'ap2'
-
-
 });
 
+
+require('./echo')
